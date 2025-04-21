@@ -25,6 +25,8 @@ for i in range(5):
     driver.find_element(By.XPATH, button_xpath).click()
 time.sleep(5)
 
+titles_list = []
+
 for i in range(1, 5):
     for j in range(1, 7):
 #        print(f"현재 i 값 과 j 값: {i} , {j}")
@@ -33,13 +35,15 @@ for i in range(1, 5):
         try:
             title = driver.find_element(By.XPATH, title_path).text
             title_with_category = f"{title} {category[0]}"  # 카테고리 추가
-            print(title_with_category)
+            titles_list.append(title_with_category)
+
+            print(titles_list)
         except:
             print('error', i, j)
 
 
-
-
+df = pd.DataFrame(titles_list, columns=['Title'])
+print(df)
 
 '//*[@id="_SECTION_HEADLINE_LIST_5bjeq"]/li[1]/div/div/div[2]/a/strong'
 '//*[@id="newsct"]/div[4]/div/div[1]/div[1]/ul/li[1]/div/div/div[2]/a/strong'
